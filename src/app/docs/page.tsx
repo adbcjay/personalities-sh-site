@@ -717,7 +717,7 @@ GOALS: Top goal status + suggested action.`}
               {[
                 [
                   "Specific over general.",
-                  '"You are a legal analyst specializing in UAE free zone regulations" beats "You are a helpful legal expert."',
+                  '"You are a legal analyst specializing in SaaS contract negotiation" beats "You are a helpful legal expert."',
                 ],
                 [
                   "Rules over vibes.",
@@ -821,7 +821,7 @@ GOALS: Top goal status + suggested action.`}
               <h3 className="text-sm font-semibold mb-2 text-[var(--text-primary)]">Quality</h3>
               <div className="space-y-1.5 text-sm text-[var(--text-secondary)]">
                 {[
-                  "PERSONA.md Identity section is specific, not generic ('legal analyst specializing in UAE free zones' not 'helpful legal expert')",
+                  "PERSONA.md Identity section is specific, not generic ('legal analyst specializing in SaaS contract negotiation' not 'helpful legal expert')",
                   "Communication Style has at least 3 concrete rules, not vibes",
                   "Behavioral Rules has at least 2 NEVER or ALWAYS constraints",
                   "highlights array has 3-9 entries describing what makes this persona distinct",

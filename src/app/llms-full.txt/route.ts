@@ -326,7 +326,7 @@ SECTION 12: QUALITY GUIDANCE
 
 What separates a persona people install from one they skip:
 
-- Specific over general. "Legal analyst specializing in UAE free zone regulations" beats "helpful legal expert." If the Identity section could describe any AI, it describes none.
+- Specific over general. "Legal analyst specializing in SaaS contract negotiation" beats "helpful legal expert." If the Identity section could describe any AI, it describes none.
 - Rules over vibes. "Never use more than 8 words in an email subject line" beats "keep subject lines concise." Concrete rules produce consistent behavior. Vague guidance produces nothing.
 - Examples matter. A persona with 5 sample interactions outperforms one with 50 behavioral rules. Show, don't tell.
 - Blueprints are the differentiator. Anyone can write personality rules. Bundling actual project systems (bots, pipelines, dashboards) that the AI builds from scratch is what makes people install yours over the next one.
