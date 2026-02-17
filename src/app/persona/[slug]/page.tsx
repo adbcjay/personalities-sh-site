@@ -122,7 +122,7 @@ export default async function PersonaPage({
           for (let i = 0; i < lines.length; i++) {
             if (lines[i].match(/^#{1,2}\s/)) {
               headingCount++;
-              if (headingCount === 3) {
+              if (headingCount === 2) {
                 cutoff = i;
                 break;
               }
