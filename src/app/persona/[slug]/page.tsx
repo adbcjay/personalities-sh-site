@@ -115,14 +115,14 @@ export default async function PersonaPage({
 
         {/* README intro from repo */}
         {readme && (() => {
-          // Extract just the intro: everything before the second ## heading
+          // Extract intro: title + first ## section only
           const lines = readme.split("\n");
-          let headingCount = 0;
+          let sectionCount = 0;
           let cutoff = lines.length;
           for (let i = 0; i < lines.length; i++) {
-            if (lines[i].match(/^#{1,2}\s/)) {
-              headingCount++;
-              if (headingCount === 2) {
+            if (lines[i].match(/^##\s/)) {
+              sectionCount++;
+              if (sectionCount === 2) {
                 cutoff = i;
                 break;
               }
