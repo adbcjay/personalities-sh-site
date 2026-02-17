@@ -103,15 +103,18 @@ export default function SubmitPage() {
             <h2 className="text-lg font-semibold">Submit your repo</h2>
           </div>
           <p className="text-[var(--text-secondary)] text-sm ml-9 mb-4">
-            Paste your GitHub repo URL below.
+            Paste your GitHub repo URL below. Submissions are reviewed
+            before listing.
           </p>
           <div className="ml-9">
             {submitted ? (
               <div className="border border-green-500/30 bg-green-500/5 rounded-lg p-5 text-sm">
                 <p className="text-green-400 font-semibold mb-1">Submitted</p>
                 <p className="text-[var(--text-secondary)]">
-                  A GitHub issue was opened. Your persona will be added to the
-                  catalog shortly.
+                  A GitHub issue was opened. We review submissions for
+                  credential leaks, prompt injection, and basic quality
+                  before adding to the catalog. Most submissions are
+                  reviewed within a few days.
                 </p>
               </div>
             ) : (
