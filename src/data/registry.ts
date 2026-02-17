@@ -743,6 +743,62 @@ export const personas: PersonaEntry[] = [
     repository: "https://github.com/OctagonAI/skills",
     installCommand: "git clone https://github.com/OctagonAI/skills.git",
   },
+  {
+    slug: "opnet-builder",
+    displayName: "OPNet Builder",
+    description:
+      "AI development toolkit for building smart contracts, dApps, and plugins on Bitcoin Layer 1 using the OP_NET consensus protocol. 3MB+ of docs, templates, guidelines, and battle-tested patterns.",
+    author: "Danny Plainview",
+    authorGithub: "bc1plainview",
+    category: "developer",
+    tags: ["bitcoin", "smart-contracts", "opnet", "typescript", "assemblyscript", "web3", "defi", "nft"],
+    integrations: [],
+    compatibleWith: ["Claude Code", "Cursor", "Windsurf"],
+    workflows: [
+      { command: "/new-token", name: "New Token", description: "Scaffold a complete OP20 token project (contract + tests + frontend)" },
+      { command: "/new-nft", name: "New NFT", description: "Scaffold a complete OP721 NFT project (contract + tests + frontend)" },
+      { command: "/audit", name: "Security Audit", description: "Run a comprehensive security audit against OPNet audit guidelines" },
+      { command: "/deploy", name: "Deploy", description: "Build, lint, typecheck, test, and deploy workflow" },
+    ],
+    blueprints: [
+      {
+        name: "op20-token",
+        displayName: "OP20 Fungible Token",
+        description: "Complete OP20 token project with AssemblyScript contract, unit tests, and React frontend.",
+        complexity: "complex",
+        services: ["opnet"],
+        outcomes: [
+          "Deployable OP20 token contract compiled to WebAssembly",
+          "Unit tests with Blockchain mocking",
+          "React frontend with wallet integration",
+        ],
+      },
+      {
+        name: "op721-nft",
+        displayName: "OP721 NFT Collection",
+        description: "Complete OP721 NFT project with AssemblyScript contract, unit tests, and React frontend.",
+        complexity: "complex",
+        services: ["opnet"],
+        outcomes: [
+          "Deployable OP721 NFT contract compiled to WebAssembly",
+          "Unit tests with Blockchain mocking",
+          "React frontend with wallet integration and minting UI",
+        ],
+      },
+    ],
+    highlights: [
+      "3MB+ of comprehensive OPNet documentation, guidelines, and API references. 151 doc files, 32 templates, 8 guidelines.",
+      "Battle-tested templates for OP20 tokens, OP721 NFTs, frontends, backends, and plugins.",
+      "Strict TypeScript enforcement -- no `any`, no raw JS, no shortcuts. 15+ NEVER rules, 10+ ALWAYS rules.",
+      "Built-in security audit workflow with OPNet-specific vulnerability patterns.",
+      "Complete wallet integration with OP_WALLET and ML-DSA quantum-resistant signatures.",
+      "Full stack coverage: AssemblyScript contracts, React frontends, hyper-express backends, node plugins.",
+      "Everything runs on Bitcoin Layer 1. No bridges, no wrapped tokens, no L2s.",
+    ],
+    version: "1.0.0",
+    repository: "https://github.com/bc1plainview/opnet-builder",
+    installCommand: "Install the OPNet Builder persona from github.com/bc1plainview/opnet-builder -- clone the repo, read the setup instructions, copy the files to the right config locations, and walk me through connecting any integrations it needs.",
+  },
 ];
 
 export const categories = [
