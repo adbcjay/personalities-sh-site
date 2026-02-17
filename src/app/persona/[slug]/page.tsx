@@ -15,7 +15,10 @@ const categoryLabels: Record<string, string> = {
   "domain-specialist": "Domain Specialist",
   personal: "Personal",
   operations: "Operations",
+  education: "Education",
   finance: "Finance",
+  health: "Health",
+  legal: "Legal",
   sales: "Sales",
   support: "Support",
 };
