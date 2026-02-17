@@ -304,6 +304,7 @@ export const categories = [
   { slug: "domain-specialist", label: "Domain Specialist" },
   { slug: "personal", label: "Personal" },
   { slug: "operations", label: "Operations" },
+  { slug: "finance", label: "Finance" },
   { slug: "sales", label: "Sales" },
   { slug: "support", label: "Support" },
 ];
