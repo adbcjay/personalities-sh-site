@@ -669,10 +669,10 @@ setup_time_minutes: 10`}
           <p>
             Full technical spec, packaging guide, and classifier prompt:{" "}
             <a
-              href="https://github.com/adbcjay/personalities-sh-spec"
+              href="https://github.com/personalities-sh/spec"
               className="text-[var(--accent)] hover:underline"
             >
-              github.com/adbcjay/personalities-sh-spec
+              github.com/personalities-sh/spec
             </a>
           </p>
         </section>

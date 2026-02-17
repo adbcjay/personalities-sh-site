@@ -111,7 +111,7 @@ export default function RootLayout({
                   Privacy
                 </a>
                 <a
-                  href="https://github.com/adbcjay/personalities-sh-spec"
+                  href="https://github.com/personalities-sh/spec"
                   className="hover:text-[var(--text-secondary)] transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"

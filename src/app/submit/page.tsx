@@ -14,7 +14,7 @@ export default function SubmitPage() {
     );
     const body = encodeURIComponent(`**Repo:** ${repoUrl.trim()}\n\n---\n_Submitted via personalities.sh_`);
     window.open(
-      `https://github.com/adbcjay/personalities-sh-site/issues/new?title=${title}&body=${body}`,
+      `https://github.com/personalities-sh/site/issues/new?title=${title}&body=${body}`,
       "_blank"
     );
     setSubmitted(true);

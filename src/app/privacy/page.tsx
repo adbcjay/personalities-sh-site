@@ -118,7 +118,7 @@ export default function PrivacyPage() {
             <p>
               Privacy questions? Open an issue on{" "}
               <a
-                href="https://github.com/adbcjay/personalities-sh-site/issues"
+                href="https://github.com/personalities-sh/site/issues"
                 className="text-[var(--accent)] hover:underline"
               >
                 GitHub

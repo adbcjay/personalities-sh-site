@@ -22,7 +22,7 @@ export default function Home() {
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block text-sm text-left">
             <span className="text-[var(--text-primary)]">
               &ldquo;Install the Operator Copilot persona from{" "}
-              <span className="text-[var(--accent)]">github.com/adbcjay/operator-copilot</span>
+              <span className="text-[var(--accent)]">github.com/personalities-sh/operator-copilot</span>
               &rdquo;
             </span>
           </div>

@@ -103,8 +103,8 @@ export const personas: PersonaEntry[] = [
       "Statements over questions — leads with its best assessment. Picks one approach and explains why. Holds position under challenge unless new information changes the calculus.",
     ],
     version: "1.0.0",
-    repository: "https://github.com/adbcjay/operator-copilot",
-    installCommand: "git clone https://github.com/adbcjay/operator-copilot.git",
+    repository: "https://github.com/personalities-sh/operator-copilot",
+    installCommand: "git clone https://github.com/personalities-sh/operator-copilot.git",
     featured: true,
   },
   {
