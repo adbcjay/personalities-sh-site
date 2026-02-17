@@ -77,28 +77,44 @@ export default function BrowseClient({
 
         {/* Feature filters */}
         <div className="flex gap-5 mb-5">
-          <label className="flex items-center gap-2 text-sm cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={hasWorkflows}
-              onChange={(e) => setHasWorkflows(e.target.checked)}
-              className="accent-[var(--accent)]"
-            />
-            <span className={hasWorkflows ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"}>
-              Has workflows
+          <div className="flex items-center gap-2">
+            <label className="flex items-center gap-2 text-sm cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={hasWorkflows}
+                onChange={(e) => setHasWorkflows(e.target.checked)}
+                className="accent-[var(--accent)]"
+              />
+              <span className={hasWorkflows ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"}>
+                Has workflows
+              </span>
+            </label>
+            <span className="relative group">
+              <span className="text-[var(--text-muted)] cursor-help text-xs border border-[var(--border)] rounded-full w-4 h-4 inline-flex items-center justify-center leading-none">i</span>
+              <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-52 p-2 text-xs text-[var(--text-secondary)] bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity z-10">
+                Slash commands like /audit or /deploy that trigger multi-step actions inside your AI agent.
+              </span>
             </span>
-          </label>
-          <label className="flex items-center gap-2 text-sm cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={hasBlueprints}
-              onChange={(e) => setHasBlueprints(e.target.checked)}
-              className="accent-[var(--accent)]"
-            />
-            <span className={hasBlueprints ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"}>
-              Has blueprints
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="flex items-center gap-2 text-sm cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={hasBlueprints}
+                onChange={(e) => setHasBlueprints(e.target.checked)}
+                className="accent-[var(--accent)]"
+              />
+              <span className={hasBlueprints ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"}>
+                Has blueprints
+              </span>
+            </label>
+            <span className="relative group">
+              <span className="text-[var(--text-muted)] cursor-help text-xs border border-[var(--border)] rounded-full w-4 h-4 inline-flex items-center justify-center leading-none">i</span>
+              <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-56 p-2 text-xs text-[var(--text-secondary)] bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity z-10">
+                Complete project systems your AI builds for you from scratch -- bots, pipelines, dashboards, automation suites.
+              </span>
             </span>
-          </label>
+          </div>
         </div>
 
         {/* Category filters */}
