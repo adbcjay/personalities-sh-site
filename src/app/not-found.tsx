@@ -12,7 +12,7 @@ export default function NotFound() {
         <div className="flex items-center justify-center gap-4">
           <a
             href="/browse"
-            className="px-4 py-2 bg-[var(--accent)] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+            className="px-4 py-2 bg-[var(--accent)] text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Browse personas
           </a>

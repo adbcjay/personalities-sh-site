@@ -13,7 +13,7 @@ export default function PrivacyPage() {
               What we collect
             </h2>
             <p className="mb-3">
-              Almost nothing. persona.sh is a static catalog with no user
+              Almost nothing. personas.sh is a static catalog with no user
               accounts, no login, and no tracking cookies.
             </p>
             <ul className="list-disc list-inside space-y-2">

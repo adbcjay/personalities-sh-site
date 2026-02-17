@@ -1,8 +1,10 @@
 import PersonaCard from "@/components/PersonaCard";
 import { personas } from "@/data/registry";
+import { getStarsMap } from "@/lib/github";
 
-export default function Home() {
-  const featured = personas.filter((p) => p.featured);
+export default async function Home() {
+  const stars = await getStarsMap();
+  const sorted = [...personas].sort((a, b) => (stars[b.slug] ?? 0) - (stars[a.slug] ?? 0));
 
   return (
     <div>
@@ -115,11 +117,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured personas */}
+      {/* Top personas by stars */}
       <section className="px-6 py-16 border-t border-[var(--border)]">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-semibold">Featured Personas</h2>
+            <h2 className="text-2xl font-semibold">Top Personas</h2>
             <a
               href="/browse"
               className="text-sm text-[var(--accent)] hover:underline"
@@ -128,8 +130,8 @@ export default function Home() {
             </a>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {featured.map((persona) => (
-              <PersonaCard key={persona.slug} persona={persona} />
+            {sorted.slice(0, 6).map((persona) => (
+              <PersonaCard key={persona.slug} persona={persona} stars={stars[persona.slug]} />
             ))}
           </div>
         </div>
@@ -148,7 +150,7 @@ export default function Home() {
           </p>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block text-sm text-left">
             <span className="text-[var(--text-primary)]">
-              &ldquo;Read the persona.sh docs and package my current
+              &ldquo;Read the personas.sh docs and package my current
               setup as a persona. Include my project workflows as
               blueprints.&rdquo;
             </span>

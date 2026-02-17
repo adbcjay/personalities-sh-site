@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { personas } from "@/data/registry";
+import { getStarsMap } from "@/lib/github";
+import CopyInstallPrompt from "@/components/CopyInstallPrompt";
 
 // Generate static paths for all personas
 export function generateStaticParams() {
@@ -35,6 +37,9 @@ export default async function PersonaPage({
     notFound();
   }
 
+  const starsMap = await getStarsMap();
+  const stars = starsMap[persona.slug];
+
   return (
     <div className="px-6 py-12">
       <div className="max-w-4xl mx-auto">
@@ -47,6 +52,19 @@ export default async function PersonaPage({
             <span className="text-xs text-[var(--text-muted)] font-mono">
               v{persona.version}
             </span>
+            {stars !== undefined && (
+              <a
+                href={`${persona.repository}/stargazers`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-yellow-400 flex items-center gap-1 hover:text-yellow-300 transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" />
+                </svg>
+                {stars.toLocaleString()}
+              </a>
+            )}
           </div>
           <h1 className="text-4xl font-bold mb-3">{persona.displayName}</h1>
           <p className="text-lg text-[var(--text-secondary)] leading-relaxed">
@@ -71,16 +89,7 @@ export default async function PersonaPage({
           <p className="text-sm text-[var(--text-secondary)] mb-3">
             Open any AI agent and paste this:
           </p>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 text-sm">
-            <span className="text-[var(--text-primary)]">
-              Install the {persona.displayName} persona from{" "}
-              <span className="text-[var(--accent)]">{persona.repository}</span>
-              {" "}&ndash; clone the repo, read the setup instructions, ask me for
-              my personal details, replace all template variables, copy the
-              files to the right config locations, and walk me through
-              connecting any integrations it needs.
-            </span>
-          </div>
+          <CopyInstallPrompt displayName={persona.displayName} repository={persona.repository} />
           <p className="text-xs text-[var(--text-muted)] mt-2">
             Your AI handles the rest: downloading files, personalizing
             the config, and walking you through integrations.
@@ -310,6 +319,22 @@ export default async function PersonaPage({
             <div className="border border-[var(--border)] rounded-lg p-4">
               <h3 className="text-sm font-semibold mb-3">Details</h3>
               <div className="space-y-2 text-sm">
+                {stars !== undefined && (
+                  <div className="flex justify-between">
+                    <span className="text-[var(--text-muted)]">Stars</span>
+                    <a
+                      href={`${persona.repository}/stargazers`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1"
+                    >
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" />
+                      </svg>
+                      {stars.toLocaleString()}
+                    </a>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span className="text-[var(--text-muted)]">License</span>
                   <span className="text-[var(--text-secondary)]">MIT</span>

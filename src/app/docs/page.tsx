@@ -62,7 +62,7 @@ export default function DocsPage() {
             <div>
               <span className="text-[var(--text-muted)]">Tool:</span>{" "}
               <span className="text-[var(--text-secondary)]">
-                &ldquo;Search the web for X&rdquo; &mdash; single capability,
+                &ldquo;Search the web for X&rdquo; -- single capability,
                 stateless
               </span>
             </div>
@@ -70,14 +70,14 @@ export default function DocsPage() {
               <span className="text-[var(--text-muted)]">Skill:</span>{" "}
               <span className="text-[var(--text-secondary)]">
                 &ldquo;When asked about spreadsheets, follow these rules&rdquo;
-                &mdash; domain knowledge, conditional
+                -- domain knowledge, conditional
               </span>
             </div>
             <div>
               <span className="text-[var(--accent)]">Persona:</span>{" "}
               <span className="text-[var(--text-primary)]">
                 &ldquo;You are a strategic operator who pushes back on bad ideas
-                and acts instead of reporting&rdquo; &mdash; full identity,
+                and acts instead of reporting&rdquo; -- full identity,
                 always-on, stateful
               </span>
             </div>
@@ -118,7 +118,7 @@ export default function DocsPage() {
                   </span>
                   <span className="text-[var(--text-muted)]">
                     {" "}
-                    &mdash; {desc as string}{" "}
+                    -- {desc as string}{" "}
                     {req ? "(required)" : "(optional)"}
                   </span>
                 </div>
@@ -407,7 +407,7 @@ repository: https://github.com/you/my-persona`}
                   <span className="text-[var(--accent)]">{name}</span>
                   <span className="text-[var(--text-muted)]">
                     {" "}
-                    &mdash; {desc}
+                    -- {desc}
                   </span>
                 </div>
               ))}
@@ -602,9 +602,9 @@ GOALS: Top goal status + suggested action.`}
             </h3>
             <div className="text-sm text-[var(--text-primary)] leading-relaxed space-y-4">
               <p>
-                Read the persona.sh format spec at{" "}
+                Read the personas.sh format spec at{" "}
                 <span className="text-[var(--accent)]">
-                  persona.sh/docs
+                  personas.sh/docs
                 </span>{" "}
                 and package my current AI setup as a persona repo. Follow these
                 steps:

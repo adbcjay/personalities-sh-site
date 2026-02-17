@@ -14,7 +14,7 @@ const categoryColors: Record<string, string> = {
   support: "bg-teal-500/10 text-teal-400 border-teal-500/20",
 };
 
-export default function PersonaCard({ persona }: { persona: PersonaEntry }) {
+export default function PersonaCard({ persona, stars }: { persona: PersonaEntry; stars?: number }) {
   const colorClass =
     categoryColors[persona.category] ||
     "bg-neutral-500/10 text-neutral-400 border-neutral-500/20";
@@ -32,9 +32,19 @@ export default function PersonaCard({ persona }: { persona: PersonaEntry }) {
           <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
             {persona.displayName}
           </h3>
-          <span className="text-xs text-[var(--text-muted)] font-mono">
-            v{persona.version}
-          </span>
+          <div className="flex items-center gap-2.5 shrink-0 ml-3">
+            {stars !== undefined && (
+              <span className="text-xs text-yellow-400 flex items-center gap-1">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" />
+                </svg>
+                {stars.toLocaleString()}
+              </span>
+            )}
+            <span className="text-xs text-[var(--text-muted)] font-mono">
+              v{persona.version}
+            </span>
+          </div>
         </div>
 
         <p className="text-sm text-[var(--text-secondary)] mb-4 flex-grow leading-relaxed">
@@ -57,11 +67,8 @@ export default function PersonaCard({ persona }: { persona: PersonaEntry }) {
           ))}
         </div>
 
-        <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
+        <div className="text-xs text-[var(--text-muted)]">
           <span>by {persona.author}</span>
-          {persona.featured && (
-            <span className="text-[var(--accent)] font-medium">Featured</span>
-          )}
         </div>
       </div>
     </Link>

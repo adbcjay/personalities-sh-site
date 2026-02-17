@@ -2,22 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "persona.sh - npm for AI identities",
+  title: "personas.sh - npm for AI identities",
   description:
     "Browse, install, and share portable AI persona configurations. Not tools. Not skills. Operating identities with project blueprints.",
-  metadataBase: new URL("https://site-self-rho.vercel.app"),
+  metadataBase: new URL("https://personas.sh"),
   openGraph: {
-    title: "persona.sh",
+    title: "personas.sh",
     description:
       "Portable AI persona configurations you install in one sentence. Complete with project blueprints your AI can build for you.",
-    siteName: "persona.sh",
+    siteName: "personas.sh",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "personas.sh - npm for AI identities" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "persona.sh - npm for AI identities",
+    title: "personas.sh - npm for AI identities",
     description:
       "Portable AI persona configurations you install in one sentence. Complete with project blueprints your AI can build for you.",
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: "/favicon.svg",
@@ -42,7 +44,7 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <a href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold text-[var(--text-primary)]">
-                persona<span className="text-[var(--accent)]">.sh</span>
+                personas<span className="text-[var(--accent)]">.sh</span>
               </span>
             </a>
             <div className="flex items-center gap-6 text-sm">
@@ -76,7 +78,7 @@ export default function RootLayout({
                   href="/"
                   className="font-semibold text-[var(--text-secondary)]"
                 >
-                  persona<span className="text-[var(--accent)]">.sh</span>
+                  personas<span className="text-[var(--accent)]">.sh</span>
                 </a>
                 <a
                   href="/browse"
