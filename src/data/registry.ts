@@ -37,75 +37,6 @@ export interface PersonaEntry {
 
 export const personas: PersonaEntry[] = [
   {
-    slug: "operator-copilot",
-    displayName: "Operator Copilot",
-    description:
-      "AI partner for non-developer business operators who think in systems. Configured for direct communication, anti-sycophancy, and action over reporting.",
-    author: "Justin",
-    authorGithub: "adbcjay",
-    category: "executive",
-    tags: ["operator", "coo", "non-developer", "anti-sycophancy", "business-automation", "strategic"],
-    integrations: [
-      { name: "google-drive", type: "mcp", required: false },
-      { name: "n8n", type: "service", required: false },
-    ],
-    compatibleWith: ["Claude Code", "Cursor", "Windsurf", "Codex CLI", "Copilot"],
-    workflows: [],
-    blueprints: [
-      {
-        name: "telegram-intake",
-        displayName: "Telegram Document Intake",
-        description: "Telegram bot that receives documents and photos, classifies them with AI, renames them, and files them to the correct Google Drive folder. Tracks everything in a Google Sheet.",
-        complexity: "complex",
-        services: ["n8n", "telegram", "google-drive", "google-sheets", "anthropic-api"],
-        outcomes: [
-          "Documents sent to Telegram are automatically classified and filed to Drive",
-          "AI renames files with standardized naming conventions",
-          "Every filed document is logged in a tracking spreadsheet with status, classification, and links",
-          "Handles photos, PDFs, and text messages",
-        ],
-      },
-      {
-        name: "task-management",
-        displayName: "AI Task Management",
-        description: "Telegram-triggered task management where the AI tracks, prioritizes, and executes tasks across projects. Integrates with Google Sheets for persistent tracking.",
-        complexity: "medium",
-        services: ["n8n", "telegram", "google-sheets"],
-        outcomes: [
-          "Create, update, and query tasks via Telegram messages",
-          "AI prioritizes tasks based on project goals and deadlines",
-          "Persistent task tracking in Google Sheets with status and timestamps",
-        ],
-      },
-      {
-        name: "accounting-pipeline",
-        displayName: "Accounting Pipeline",
-        description: "Custom accounting spreadsheet that categorizes expenses and revenue, linked to Google Drive folders for source documents. AI classifies transactions from uploaded receipts and invoices.",
-        complexity: "medium",
-        services: ["google-sheets", "google-drive", "anthropic-api"],
-        outcomes: [
-          "Expenses and revenue automatically categorized from uploaded documents",
-          "Custom spreadsheet with formulas for running totals and category breakdowns",
-          "Source documents linked to their corresponding spreadsheet entries",
-        ],
-      },
-    ],
-    highlights: [
-      "Partnership, not service — pushes back on bad ideas, disagrees when it sees a problem, offers unsolicited opinions. Silent agreement is treated as failure.",
-      "Anti-sycophancy engine — no \"Great question!\", no hedging. If your idea has holes, says \"That won't work because X\" directly.",
-      "No-code-first evaluation — evaluates n8n, Zapier, or Make before writing custom code. Has been used to build 8-workflow automation pipelines without a single line of code.",
-      "Act, don't report — fixes broken things instead of presenting findings. Built and deployed a Telegram bot, orchestrated multi-drive file migrations, and shipped a full website in single sessions.",
-      "De-GPT all writing — external-facing text scores <=2 on AI detection. No emdashes, no formulaic structure, no \"Here's...\" openers. Reads like a human wrote it.",
-      "Persistent memory system — records decisions, corrections, and project state across sessions. After any mistake, writes what it learned so it never repeats it.",
-      "Skill-aware execution — auto-invokes spreadsheet, PDF, Word, and presentation tools. Findings lead to action via the right tool, never stopping at findings alone.",
-      "Calibrated for non-developers — explains logic in plain language. \"Non-developer\" means doesn't write code, not non-technical. Built for operators who think in systems, not syntax.",
-      "Statements over questions — leads with its best assessment. Picks one approach and explains why. Holds position under challenge unless new information changes the calculus.",
-    ],
-    version: "1.0.0",
-    repository: "https://github.com/persona-sh/operator-copilot",
-    installCommand: "git clone https://github.com/persona-sh/operator-copilot.git",
-  },
-  {
     slug: "chief-of-staff",
     displayName: "Chief of Staff",
     description:
@@ -783,6 +714,40 @@ export const personas: PersonaEntry[] = [
           "Deployable OP721 NFT contract compiled to WebAssembly",
           "Unit tests with Blockchain mocking",
           "React frontend with wallet integration and minting UI",
+        ],
+      },
+      {
+        name: "staking-contract",
+        displayName: "OP20 Staking Contract",
+        description: "OP20 staking contract with time-based rewards, unit tests, and React frontend.",
+        complexity: "complex",
+        services: ["opnet"],
+        outcomes: [
+          "Staking contract with configurable reward rates",
+          "Unit tests with Blockchain mocking",
+          "React frontend for staking and claiming rewards",
+        ],
+      },
+      {
+        name: "swap-ui",
+        displayName: "MotoSwap Interface",
+        description: "MotoSwap swap interface connecting to the Router for token swaps on Bitcoin L1.",
+        complexity: "medium",
+        services: ["opnet"],
+        outcomes: [
+          "React frontend for token swaps via MotoSwap Router",
+          "Wallet integration with OP_WALLET",
+        ],
+      },
+      {
+        name: "portfolio-tracker",
+        displayName: "Portfolio Tracker",
+        description: "Multi-token portfolio dashboard with balance tracking across OP20 tokens.",
+        complexity: "simple",
+        services: ["opnet"],
+        outcomes: [
+          "React dashboard showing token balances and portfolio value",
+          "Multi-token support with real-time balance fetching",
         ],
       },
     ],
