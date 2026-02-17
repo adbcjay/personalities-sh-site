@@ -28,7 +28,7 @@ my-persona/
   README.md          -- description for humans (required)
   commands/          -- slash command definitions (optional)
   memory/            -- persistent state templates (optional)
-  skills/            -- domain knowledge files (optional)
+  skills/            -- custom domain knowledge written by the author (optional)
   examples/          -- sample interactions (optional)
   blueprints/        -- reproducible project systems (optional)
 
@@ -53,11 +53,21 @@ compatible_with:            # agents you've tested with
   - Claude Code
   - Cursor
 
-integrations:               # optional
+integrations:               # optional, external services
   - name: gmail
     type: mcp               # mcp, api, service, plugin
     required: true
     purpose: "Email triage"
+
+required_skills:            # optional, third-party agent skills
+  - name: xlsx              # skill identifier
+    install: "npx skills add xlsx"
+    purpose: "Spreadsheet creation and editing"
+    required: true
+  - name: pdf
+    install: "npx skills add pdf"
+    purpose: "PDF reading and generation"
+    required: false
 
 variables:                  # optional
   - key: YOUR_NAME
@@ -79,7 +89,7 @@ repository: https://github.com/you/my-persona
 
 Required fields: name, display_name, version, description, author (name + github), category, tags
 Recommended: compatible_with, highlights, repository, variables
-Optional: integrations, workflows, blueprints
+Optional: integrations, required_skills, workflows, blueprints
 
 =====================================
 SECTION 4: PERSONA.md SECTIONS
@@ -252,6 +262,12 @@ De-identification:
 [] All personal data replaced with {{VARIABLE}} placeholders
 [] Workflow files use descriptive placeholders
 
+Completeness:
+[] If the user has installed skills or plugins, they are listed in required_skills with install commands
+[] If the user has MCP servers configured, they are listed in integrations with type: mcp
+[] If the user has custom domain knowledge files, they are included in skills/
+[] If the user has memory/state patterns, templates are included in memory/
+
 Quality:
 [] Identity section is specific, not generic
 [] Communication Style has 3+ concrete rules
@@ -260,6 +276,7 @@ Quality:
 [] description is 1-3 sentences
 [] If blueprints exist: each has blueprint.yaml, README.md, setup.md
 [] If workflows exist: each has command, name, description
+[] If required_skills exist: each has name, install command, and purpose
 
 =====================================
 SECTION 12: HOW TO CREATE A PERSONA
@@ -269,12 +286,18 @@ Paste this prompt into your AI agent:
 
 "Read the personas.sh format spec at personas.sh/docs and package my current AI setup as a persona repo. Follow these steps:
 
-1. Scan my config files (CLAUDE.md, .cursorrules, commands/, settings.json, any YAML state files) and report what you find.
+1. Scan my full agent setup and report what you find. Check ALL of these locations:
+   - Config files: CLAUDE.md, .cursorrules, .windsurfrules, commands/, settings.json, any YAML state files
+   - MCP server configs: .claude.json, .cursor/mcp.json, or equivalent for your agent
+   - Installed skills/plugins: .agents/skills/, any third-party skill directories, plugin configs
+   - Memory/state: .claude/projects/*/memory/, any persistent state files the agent maintains
+   - Hooks or middleware: any pre/post-processing scripts triggered by agent events
 2. Analyze the config: identity, communication rules, constraints, integrations, commands, persistent state, domain knowledge.
-3. Check for project systems I've built (automations, bots, tracking spreadsheets, workflows). Package each as a blueprint with setup.md, workflow files, and templates.
-4. De-identify everything. Replace all personal data with {{VARIABLE}} placeholders. Strip API keys, credentials, tokens, and absolute paths. Also scrub workflow files: replace hardcoded user IDs, bot tokens, Drive folder IDs, spreadsheet IDs, webhook URLs, company names, team member names with descriptive placeholders.
-5. Generate the full package: persona.yaml, PERSONA.md, SETUP.md, README.md, commands/, blueprints/ if applicable.
-6. Show me the file structure and key files for review before writing to disk."
+3. Inventory installed skills and MCP servers. For third-party skills (ones installed via npm/pip/etc), list them as required_skills with install commands. For custom domain knowledge you wrote yourself, include the content in skills/. For MCP servers, list them as integrations with type: mcp.
+4. Check for project systems I've built (automations, bots, tracking spreadsheets, workflows). Package each as a blueprint with setup.md, workflow files, and templates.
+5. De-identify everything. Replace all personal data with {{VARIABLE}} placeholders. Strip API keys, credentials, tokens, and absolute paths. Also scrub workflow files: replace hardcoded user IDs, bot tokens, Drive folder IDs, spreadsheet IDs, webhook URLs, company names, team member names with descriptive placeholders.
+6. Generate the full package: persona.yaml, PERSONA.md, SETUP.md, README.md, commands/, skills/, blueprints/ if applicable.
+7. Show me the file structure and key files for review before writing to disk."
 
 =====================================
 SECTION 13: HOW TO INSTALL A PERSONA

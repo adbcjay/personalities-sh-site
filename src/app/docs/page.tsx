@@ -96,7 +96,7 @@ export default function DocsPage() {
                 [true, "README.md", "description for humans"],
                 [false, "commands/", "slash command definitions"],
                 [false, "memory/", "persistent state templates"],
-                [false, "skills/", "domain knowledge files"],
+                [false, "skills/", "custom domain knowledge written by the author"],
                 [false, "examples/", "sample interactions"],
                 [false, "blueprints/", "reproducible project systems"],
               ].map(([req, name, desc]) => (
@@ -322,7 +322,7 @@ compatible_with:            # agents you've tested with
   - OpenClaw                # any agent that reads
   - ZeroClaw                # markdown config files works
 
-integrations:               # optional
+integrations:               # optional, external services
   - name: gmail
     type: mcp               # mcp, api, service, plugin
     required: true
@@ -331,6 +331,12 @@ integrations:               # optional
     type: api
     required: false
     purpose: "Knowledge base"
+
+required_skills:            # optional, third-party skills
+  - name: xlsx
+    install: "npx skills add xlsx"
+    purpose: "Spreadsheet creation and editing"
+    required: true
 
 variables:                  # optional
   - key: YOUR_NAME
@@ -360,7 +366,7 @@ repository: https://github.com/you/my-persona`}
           <div className="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
             <p><strong className="text-[var(--text-primary)]">Required fields:</strong> name, display_name, version, description, author (name + github), category, tags</p>
             <p><strong className="text-[var(--text-primary)]">Recommended:</strong> compatible_with, highlights, repository, variables</p>
-            <p><strong className="text-[var(--text-primary)]">Optional:</strong> integrations, workflows, blueprints</p>
+            <p><strong className="text-[var(--text-primary)]">Optional:</strong> integrations, required_skills, workflows, blueprints</p>
             <p className="text-[var(--text-muted)] mt-2 text-xs">
               <strong>Note on compatible_with:</strong> Persona packages are plain markdown files. They work with ANY AI agent that reads config files. The compatible_with field lists agents the author has tested with, not agents it&apos;s limited to. If an agent isn&apos;t listed, the persona still works -- the author just hasn&apos;t verified it.
             </p>
@@ -616,8 +622,13 @@ GOALS: Top goal status + suggested action.`}
                 steps:
               </p>
               <p>
-                1. Scan my config files (CLAUDE.md, .cursorrules, commands/,
-                settings.json, any YAML state files) and report what you find.
+                1. Scan my full agent setup and report what you find. Check
+                ALL of these: config files (CLAUDE.md, .cursorrules,
+                .windsurfrules, commands/, settings.json, YAML state files),
+                MCP server configs (.claude.json, .cursor/mcp.json),
+                installed skills/plugins (.agents/skills/, any third-party
+                skill directories), memory/state files (.claude/projects/*/memory/),
+                and any hooks or middleware scripts.
               </p>
               <p>
                 2. Analyze the config: identity, communication rules,
@@ -625,12 +636,19 @@ GOALS: Top goal status + suggested action.`}
                 knowledge.
               </p>
               <p>
-                3. Check for project systems I&apos;ve built (automations, bots,
+                3. Inventory installed skills and MCP servers. For third-party
+                skills (installed via npm/pip/etc), list them as required_skills
+                with install commands. For custom domain knowledge I wrote
+                myself, include the content in skills/. For MCP servers, list
+                them as integrations with type: mcp.
+              </p>
+              <p>
+                4. Check for project systems I&apos;ve built (automations, bots,
                 tracking spreadsheets, workflows). Package each as a blueprint
                 with setup.md, workflow files, and templates.
               </p>
               <p>
-                4. De-identify everything. Replace all personal data with{" "}
+                5. De-identify everything. Replace all personal data with{" "}
                 {"{{VARIABLE}}"} placeholders. Strip API keys, credentials,
                 tokens, and absolute paths. CRITICAL: also scrub workflow
                 files and automation configs. Replace hardcoded user IDs,
@@ -642,12 +660,13 @@ GOALS: Top goal status + suggested action.`}
                 not mirrors of your production setup.
               </p>
               <p>
-                5. Generate the full package: persona.yaml, PERSONA.md (with
+                6. Generate the full package: persona.yaml, PERSONA.md (with
                 Identity, Communication Style, Behavioral Rules sections),
-                SETUP.md, README.md, commands/, blueprints/ if applicable.
+                SETUP.md, README.md, commands/, skills/, blueprints/ if
+                applicable.
               </p>
               <p>
-                6. Show me the file structure and key files for review before
+                7. Show me the file structure and key files for review before
                 writing to disk.
               </p>
             </div>
@@ -752,6 +771,22 @@ GOALS: Top goal status + suggested action.`}
               </div>
             </div>
             <div className="border border-[var(--border)] rounded-lg p-4">
+              <h3 className="text-sm font-semibold mb-2 text-[var(--text-primary)]">Completeness</h3>
+              <div className="space-y-1.5 text-sm text-[var(--text-secondary)]">
+                {[
+                  "If the user has installed skills or plugins, they are listed in required_skills with install commands",
+                  "If the user has MCP servers configured, they are listed in integrations with type: mcp",
+                  "If the user has custom domain knowledge files, they are included in skills/",
+                  "If the user has memory/state patterns, templates are included in memory/",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <span className="text-[var(--accent)] shrink-0">[]</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border border-[var(--border)] rounded-lg p-4">
               <h3 className="text-sm font-semibold mb-2 text-[var(--text-primary)]">Quality</h3>
               <div className="space-y-1.5 text-sm text-[var(--text-secondary)]">
                 {[
@@ -762,6 +797,7 @@ GOALS: Top goal status + suggested action.`}
                   "description is 1-3 sentences that would make someone want to install it",
                   "If blueprints exist: each has blueprint.yaml, README.md, and setup.md with numbered steps",
                   "If workflows exist: each has command (starting with /), name, and description",
+                  "If required_skills exist: each has name, install command, and purpose",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <span className="text-[var(--accent)] shrink-0">[]</span>
@@ -853,6 +889,11 @@ integrations:
     type: mcp
     required: false
     purpose: "Pipeline tracking"
+required_skills:
+  - name: xlsx
+    install: "npx skills add xlsx"
+    purpose: "Create and edit pipeline spreadsheets"
+    required: true
 variables:
   - key: YOUR_NAME
     prompt: "Your full name?"
