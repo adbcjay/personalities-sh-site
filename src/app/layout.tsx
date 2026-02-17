@@ -1,0 +1,70 @@
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "personalities.sh - npm for AI identities",
+  description:
+    "Browse, install, and share portable AI persona configurations. Not tools. Not skills. Identities.",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen antialiased">
+        <nav className="border-b border-[var(--border)] px-6 py-4">
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="/" className="flex items-center gap-2">
+              <span className="text-xl font-bold text-[var(--text-primary)]">
+                personalities<span className="text-[var(--accent)]">.sh</span>
+              </span>
+            </a>
+            <div className="flex items-center gap-6 text-sm">
+              <a
+                href="/browse"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                Browse
+              </a>
+              <a
+                href="/docs"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                Docs
+              </a>
+              <a
+                href="/submit"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                Submit
+              </a>
+            </div>
+          </div>
+        </nav>
+        <main>{children}</main>
+        <footer className="border-t border-[var(--border)] px-6 py-8 mt-20">
+          <div className="max-w-6xl mx-auto text-center text-sm text-[var(--text-muted)]">
+            <p>
+              personalities.sh is open source.{" "}
+              <a
+                href="https://github.com/adbcjay/personalities-sh-spec"
+                className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              >
+                GitHub
+              </a>
+            </p>
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
