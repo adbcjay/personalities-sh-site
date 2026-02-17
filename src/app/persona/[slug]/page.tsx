@@ -113,17 +113,44 @@ export default async function PersonaPage({
           )}
         </div>
 
-        {/* README from repo */}
-        {readme && (
-          <div className="mb-10 border border-[var(--border)] rounded-lg p-6">
-            <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-4">
-              From the repo
-            </h2>
-            <div className="prose prose-invert prose-sm max-w-none prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-a:text-[var(--accent)] prose-strong:text-[var(--text-primary)] prose-code:text-[var(--accent)] prose-li:text-[var(--text-secondary)] prose-h1:text-xl prose-h1:mb-3 prose-h2:text-base prose-h2:mb-2 prose-h3:text-sm prose-hr:border-[var(--border)]">
-              <ReactMarkdown>{readme}</ReactMarkdown>
+        {/* README intro from repo */}
+        {readme && (() => {
+          // Extract just the intro: everything before the second ## heading
+          const lines = readme.split("\n");
+          let headingCount = 0;
+          let cutoff = lines.length;
+          for (let i = 0; i < lines.length; i++) {
+            if (lines[i].match(/^#{1,2}\s/)) {
+              headingCount++;
+              if (headingCount === 3) {
+                cutoff = i;
+                break;
+              }
+            }
+          }
+          const intro = lines.slice(0, cutoff).join("\n").trim();
+          if (!intro) return null;
+          return (
+            <div className="mb-10 border border-[var(--border)] rounded-lg p-6">
+              <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-4">
+                From the repo
+              </h2>
+              <div className="prose prose-invert prose-sm max-w-none prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-a:text-[var(--accent)] prose-strong:text-[var(--text-primary)] prose-code:text-[var(--accent)] prose-li:text-[var(--text-secondary)] prose-h1:text-xl prose-h1:mb-3 prose-h2:text-base prose-h2:mb-2 prose-h3:text-sm prose-hr:border-[var(--border)]">
+                <ReactMarkdown>{intro}</ReactMarkdown>
+              </div>
+              {cutoff < lines.length && persona.repository !== "#" && (
+                <a
+                  href={persona.repository}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4 text-sm text-[var(--accent)] hover:underline"
+                >
+                  Read full README on GitHub &rarr;
+                </a>
+              )}
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         <div className="grid md:grid-cols-3 gap-10">
           {/* Main content */}
