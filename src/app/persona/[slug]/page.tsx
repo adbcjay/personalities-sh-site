@@ -59,21 +59,77 @@ export default async function PersonaPage({
           </p>
         </div>
 
-        {/* Install command */}
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 mb-2 font-mono text-sm">
-          <span className="text-[var(--text-muted)]">$</span>{" "}
-          <span className="text-[var(--text-primary)]">
-            {persona.installCommand}
-          </span>
+        {/* Install prompt */}
+        <div className="mb-10">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            How to install
+          </h2>
+          <p className="text-sm text-[var(--text-secondary)] mb-3">
+            Open your AI agent (Claude Code, Cursor, Windsurf, etc.) and paste this:
+          </p>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 text-sm">
+            <span className="text-[var(--text-primary)]">
+              Install the {persona.displayName} persona from{" "}
+              <span className="text-[var(--accent)]">{persona.repository}</span>
+              {" "}&mdash; clone the repo, read the setup instructions, ask me for my
+              personal details, replace all template variables, copy the
+              files to the right config locations, and walk me through
+              connecting any integrations it needs.
+            </span>
+          </div>
+          <p className="text-xs text-[var(--text-muted)] mt-2">
+            Your AI will handle the rest &mdash; downloading files, personalizing
+            the config, and guiding you through any integrations step by step.
+          </p>
         </div>
-        <p className="text-xs text-[var(--text-muted)] mb-10">
-          Then copy PERSONA.md to your agent&apos;s config directory (e.g. ~/.claude/)
-          and replace {"{{VARIABLES}}"} with your info. See SETUP.md in the repo for details.
-        </p>
 
         <div className="grid md:grid-cols-3 gap-10">
           {/* Main content */}
           <div className="md:col-span-2 space-y-8">
+            {/* What it does — highlights */}
+            <div>
+              <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+                What it does
+              </h2>
+              <div className="space-y-2.5 text-sm text-[var(--text-secondary)]">
+                {persona.highlights.map((highlight, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <span className="text-[var(--accent)] mt-0.5 shrink-0">~</span>
+                    <span>{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Built-in workflows */}
+            {persona.workflows.length > 0 && (
+              <div>
+                <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+                  Built-in workflows
+                </h2>
+                <div className="space-y-4">
+                  {persona.workflows.map((wf) => (
+                    <div
+                      key={wf.command}
+                      className="border border-[var(--border)] rounded-lg p-4"
+                    >
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <code className="text-[var(--accent)] text-sm font-mono">
+                          {wf.command}
+                        </code>
+                        <span className="text-sm font-semibold text-[var(--text-primary)]">
+                          {wf.name}
+                        </span>
+                      </div>
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                        {wf.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Tags */}
             <div>
               <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
@@ -88,31 +144,6 @@ export default async function PersonaPage({
                     {tag}
                   </span>
                 ))}
-              </div>
-            </div>
-
-            {/* What you get */}
-            <div>
-              <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-                What You Get
-              </h2>
-              <div className="space-y-2 text-sm text-[var(--text-secondary)]">
-                <div className="flex items-center gap-2">
-                  <span className="text-[var(--accent)]">~</span>
-                  <span>PERSONA.md -- Identity, communication style, behavioral rules</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[var(--accent)]">~</span>
-                  <span>persona.yaml -- Machine-readable metadata</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[var(--accent)]">~</span>
-                  <span>SETUP.md -- Installation and configuration guide</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[var(--accent)]">~</span>
-                  <span>examples/ -- Sample interactions showing the persona in action</span>
-                </div>
               </div>
             </div>
 
@@ -166,9 +197,9 @@ export default async function PersonaPage({
             <div className="border border-[var(--border)] rounded-lg p-4">
               <h3 className="text-sm font-semibold mb-3">Works With</h3>
               <div className="space-y-1.5 text-sm text-[var(--text-secondary)]">
-                <div>Claude Code</div>
-                <div>Cursor</div>
-                <div>Windsurf</div>
+                {persona.compatibleWith.map((tool) => (
+                  <div key={tool}>{tool}</div>
+                ))}
               </div>
             </div>
 

@@ -14,15 +14,20 @@ export default function Home() {
             <span className="text-[var(--accent)]">identities</span>
           </h1>
           <p className="text-xl text-[var(--text-secondary)] mb-8 leading-relaxed">
-            Portable AI persona configurations you install in one command.
+            Portable AI persona configurations you install in one sentence.
             Not tools. Not skills. Operating identities that shape how your
             AI thinks, communicates, and works.
           </p>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block font-mono text-sm">
-            <span className="text-[var(--text-muted)]">$</span>{" "}
-            <span className="text-[var(--text-primary)]">git clone</span>{" "}
-            <span className="text-[var(--accent)]">github.com/adbcjay/operator-copilot</span>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block text-sm text-left">
+            <span className="text-[var(--text-primary)]">
+              &ldquo;Install the Operator Copilot persona from{" "}
+              <span className="text-[var(--accent)]">github.com/adbcjay/operator-copilot</span>
+              &rdquo;
+            </span>
           </div>
+          <p className="text-xs text-[var(--text-muted)] mt-3">
+            Paste that into Claude Code, Cursor, Windsurf, or any AI agent. It handles the rest.
+          </p>
         </div>
       </section>
 
@@ -91,8 +96,9 @@ export default function Home() {
               <div className="text-[var(--accent)] font-mono text-sm mb-2">02</div>
               <h3 className="font-semibold mb-2">Install</h3>
               <p className="text-sm text-[var(--text-secondary)]">
-                Clone the repo. Copy the files into your AI agent&apos;s config
-                directory. Replace the placeholder variables with your info.
+                Paste one sentence into your AI agent. It downloads the persona,
+                asks for your details, sets everything up, and walks you through
+                connecting any integrations.
               </p>
             </div>
             <div>
@@ -138,18 +144,16 @@ export default function Home() {
             If you&apos;ve customized your AI&apos;s behavior, you have a persona.
             Package it and share it with the community.
           </p>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block font-mono text-sm text-left">
-            <div className="text-[var(--text-muted)]">
-              # Paste the packaging guide into your AI session
-            </div>
-            <div>
-              <span className="text-[var(--text-muted)]">$</span>{" "}
-              <span className="text-[var(--text-primary)]">claude</span>{" "}
-              <span className="text-[var(--text-secondary)]">
-                &quot;Package my setup as a persona. Follow these instructions.&quot;
-              </span>
-            </div>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block text-sm text-left">
+            <span className="text-[var(--text-primary)]">
+              &ldquo;Read my AI config files and package my setup as a
+              shareable persona. Follow the personalities.sh format.&rdquo;
+            </span>
           </div>
+          <p className="text-xs text-[var(--text-muted)] mt-3">
+            Your AI reads your config, strips personal info, and generates
+            a package anyone can install.
+          </p>
         </div>
       </section>
 
@@ -164,8 +168,8 @@ export default function Home() {
               <h3 className="font-semibold mb-2">Not locked in</h3>
               <p className="text-sm text-[var(--text-secondary)]">
                 Persona packages are markdown files in a Git repo. They work
-                with Claude Code, Cursor, Windsurf, and any agent that reads
-                config files. You own them.
+                with Claude Code, Cursor, Windsurf, Codex CLI, Copilot, Gemini,
+                and any agent that reads config files. You own them.
               </p>
             </div>
             <div className="border border-[var(--border)] rounded-lg p-5">
