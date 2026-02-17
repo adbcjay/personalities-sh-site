@@ -71,15 +71,15 @@ export default async function PersonaPage({
             <span className="text-[var(--text-primary)]">
               Install the {persona.displayName} persona from{" "}
               <span className="text-[var(--accent)]">{persona.repository}</span>
-              {" "}&mdash; clone the repo, read the setup instructions, ask me for my
-              personal details, replace all template variables, copy the
+              {" "}&ndash; clone the repo, read the setup instructions, ask me for
+              my personal details, replace all template variables, copy the
               files to the right config locations, and walk me through
               connecting any integrations it needs.
             </span>
           </div>
           <p className="text-xs text-[var(--text-muted)] mt-2">
-            Your AI will handle the rest &mdash; downloading files, personalizing
-            the config, and guiding you through any integrations step by step.
+            Your AI handles the rest: downloading files, personalizing
+            the config, and walking you through integrations.
           </p>
         </div>
 
@@ -101,12 +101,15 @@ export default async function PersonaPage({
               </div>
             </div>
 
-            {/* Built-in workflows */}
+            {/* Built-in commands */}
             {persona.workflows.length > 0 && (
               <div>
                 <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-                  Built-in workflows
+                  Slash commands
                 </h2>
+                <p className="text-sm text-[var(--text-muted)] mb-4">
+                  Run these in your AI session. The persona executes them using connected integrations.
+                </p>
                 <div className="space-y-4">
                   {persona.workflows.map((wf) => (
                     <div
@@ -232,7 +235,7 @@ export default async function PersonaPage({
             {/* Integrations */}
             {persona.mcpServers.length > 0 && (
               <div className="border border-[var(--border)] rounded-lg p-4">
-                <h3 className="text-sm font-semibold mb-3">Integrations</h3>
+                <h3 className="text-sm font-semibold mb-3">MCP Integrations</h3>
                 <div className="space-y-2">
                   {persona.mcpServers.map((mcp) => (
                     <div
@@ -256,6 +259,31 @@ export default async function PersonaPage({
                 </div>
               </div>
             )}
+
+            {/* Blueprint services */}
+            {persona.blueprints.length > 0 && (() => {
+              const allServices = [...new Set(
+                persona.blueprints.flatMap((bp) => bp.services)
+              )].sort();
+              return allServices.length > 0 ? (
+                <div className="border border-[var(--border)] rounded-lg p-4">
+                  <h3 className="text-sm font-semibold mb-3">Blueprint Services</h3>
+                  <p className="text-xs text-[var(--text-muted)] mb-2">
+                    Used by the project blueprints below
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {allServices.map((svc) => (
+                      <span
+                        key={svc}
+                        className="text-xs px-2 py-0.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)]"
+                      >
+                        {svc}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ) : null;
+            })()}
 
             {/* Compatibility */}
             <div className="border border-[var(--border)] rounded-lg p-4">

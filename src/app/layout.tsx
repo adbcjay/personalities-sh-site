@@ -4,7 +4,24 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "personalities.sh - npm for AI identities",
   description:
-    "Browse, install, and share portable AI persona configurations. Not tools. Not skills. Identities.",
+    "Browse, install, and share portable AI persona configurations. Not tools. Not skills. Operating identities with project blueprints.",
+  metadataBase: new URL("https://site-self-rho.vercel.app"),
+  openGraph: {
+    title: "personalities.sh",
+    description:
+      "Portable AI persona configurations you install in one sentence. Complete with project blueprints your AI can build for you.",
+    siteName: "personalities.sh",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "personalities.sh - npm for AI identities",
+    description:
+      "Portable AI persona configurations you install in one sentence. Complete with project blueprints your AI can build for you.",
+  },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -52,16 +69,57 @@ export default function RootLayout({
         </nav>
         <main>{children}</main>
         <footer className="border-t border-[var(--border)] px-6 py-8 mt-20">
-          <div className="max-w-6xl mx-auto text-center text-sm text-[var(--text-muted)]">
-            <p>
-              personalities.sh is open source.{" "}
-              <a
-                href="https://github.com/adbcjay/personalities-sh-spec"
-                className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-              >
-                GitHub
-              </a>
-            </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--text-muted)]">
+              <div className="flex items-center gap-6">
+                <a
+                  href="/"
+                  className="font-semibold text-[var(--text-secondary)]"
+                >
+                  personalities<span className="text-[var(--accent)]">.sh</span>
+                </a>
+                <a
+                  href="/browse"
+                  className="hover:text-[var(--text-secondary)] transition-colors"
+                >
+                  Browse
+                </a>
+                <a
+                  href="/docs"
+                  className="hover:text-[var(--text-secondary)] transition-colors"
+                >
+                  Docs
+                </a>
+                <a
+                  href="/submit"
+                  className="hover:text-[var(--text-secondary)] transition-colors"
+                >
+                  Submit
+                </a>
+              </div>
+              <div className="flex items-center gap-6">
+                <a
+                  href="/terms"
+                  className="hover:text-[var(--text-secondary)] transition-colors"
+                >
+                  Terms
+                </a>
+                <a
+                  href="/privacy"
+                  className="hover:text-[var(--text-secondary)] transition-colors"
+                >
+                  Privacy
+                </a>
+                <a
+                  href="https://github.com/adbcjay/personalities-sh-spec"
+                  className="hover:text-[var(--text-secondary)] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
           </div>
         </footer>
       </body>
