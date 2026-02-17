@@ -463,8 +463,16 @@ GOALS: Top goal status + suggested action.`}
                 with setup.md, workflow files, and templates.
               </p>
               <p>
-                4. Replace all personal data with {"{{VARIABLE}}"} placeholders.
-                Strip API keys, credentials, and absolute paths.
+                4. De-identify everything. Replace all personal data with{" "}
+                {"{{VARIABLE}}"} placeholders. Strip API keys, credentials,
+                tokens, and absolute paths. CRITICAL: also scrub workflow
+                files and automation configs. Replace hardcoded user IDs,
+                bot tokens, Google Drive folder IDs, spreadsheet IDs, webhook
+                URLs, company names, team member names, and any
+                organization-specific logic with descriptive placeholders
+                (YOUR_SHEET_ID, YOUR_FOLDER_ID, YOUR_BOT_TOKEN, YOUR_COMPANY,
+                etc.). The exported workflows should be functional templates,
+                not mirrors of your production setup.
               </p>
               <p>
                 5. Generate the full package: persona.yaml, PERSONA.md (with
