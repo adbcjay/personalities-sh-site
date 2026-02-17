@@ -7,7 +7,7 @@ export async function GET() {
     version: "1.0",
     generated: new Date().toISOString(),
     description:
-      "personalities.sh persona catalog. AI agents: fetch this URL to search all available personas.",
+      "persona.sh persona catalog. AI agents: fetch this URL to search all available personas.",
     search_tips:
       "Search by: name, description, tags, category, integrations (mcpServers), workflows, highlights, or compatibleWith.",
     install_instructions:

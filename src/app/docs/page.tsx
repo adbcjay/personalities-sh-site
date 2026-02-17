@@ -441,7 +441,7 @@ GOALS: Top goal status + suggested action.`}
             </h3>
             <div className="text-sm text-[var(--text-primary)] leading-relaxed space-y-4">
               <p>
-                Read the personalities.sh format spec at{" "}
+                Read the persona.sh format spec at{" "}
                 <span className="text-[var(--accent)]">
                   https://site-self-rho.vercel.app/docs
                 </span>{" "}
@@ -669,10 +669,10 @@ setup_time_minutes: 10`}
           <p>
             Full technical spec, packaging guide, and classifier prompt:{" "}
             <a
-              href="https://github.com/personalities-sh/spec"
+              href="https://github.com/persona-sh/spec"
               className="text-[var(--accent)] hover:underline"
             >
-              github.com/personalities-sh/spec
+              github.com/persona-sh/spec
             </a>
           </p>
         </section>

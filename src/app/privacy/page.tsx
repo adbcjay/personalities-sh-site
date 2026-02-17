@@ -13,7 +13,7 @@ export default function PrivacyPage() {
               What we collect
             </h2>
             <p className="mb-3">
-              Almost nothing. personalities.sh is a static catalog with no user
+              Almost nothing. persona.sh is a static catalog with no user
               accounts, no login, and no tracking cookies.
             </p>
             <ul className="list-disc list-inside space-y-2">
@@ -118,7 +118,7 @@ export default function PrivacyPage() {
             <p>
               Privacy questions? Open an issue on{" "}
               <a
-                href="https://github.com/personalities-sh/site/issues"
+                href="https://github.com/persona-sh/site/issues"
                 className="text-[var(--accent)] hover:underline"
               >
                 GitHub

@@ -12,9 +12,9 @@ export default function SubmitPage() {
     const title = encodeURIComponent(
       `New persona: ${repoUrl.split("/").pop() || "submission"}`
     );
-    const body = encodeURIComponent(`**Repo:** ${repoUrl.trim()}\n\n---\n_Submitted via personalities.sh_`);
+    const body = encodeURIComponent(`**Repo:** ${repoUrl.trim()}\n\n---\n_Submitted via persona.sh_`);
     window.open(
-      `https://github.com/personalities-sh/site/issues/new?title=${title}&body=${body}`,
+      `https://github.com/persona-sh/site/issues/new?title=${title}&body=${body}`,
       "_blank"
     );
     setSubmitted(true);
@@ -42,7 +42,7 @@ export default function SubmitPage() {
           </p>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-5 py-4 ml-9 text-sm">
             <p className="text-[var(--text-primary)] leading-relaxed">
-              Read the personalities.sh format spec at{" "}
+              Read the persona.sh format spec at{" "}
               <span className="text-[var(--accent)]">
                 https://site-self-rho.vercel.app/docs
               </span>{" "}

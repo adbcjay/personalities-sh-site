@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "personalities.sh - npm for AI identities",
+  title: "persona.sh - npm for AI identities",
   description:
     "Browse, install, and share portable AI persona configurations. Not tools. Not skills. Operating identities with project blueprints.",
   metadataBase: new URL("https://site-self-rho.vercel.app"),
   openGraph: {
-    title: "personalities.sh",
+    title: "persona.sh",
     description:
       "Portable AI persona configurations you install in one sentence. Complete with project blueprints your AI can build for you.",
-    siteName: "personalities.sh",
+    siteName: "persona.sh",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "personalities.sh - npm for AI identities",
+    title: "persona.sh - npm for AI identities",
     description:
       "Portable AI persona configurations you install in one sentence. Complete with project blueprints your AI can build for you.",
   },
@@ -42,7 +42,7 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <a href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold text-[var(--text-primary)]">
-                personalities<span className="text-[var(--accent)]">.sh</span>
+                persona<span className="text-[var(--accent)]">.sh</span>
               </span>
             </a>
             <div className="flex items-center gap-6 text-sm">
@@ -76,7 +76,7 @@ export default function RootLayout({
                   href="/"
                   className="font-semibold text-[var(--text-secondary)]"
                 >
-                  personalities<span className="text-[var(--accent)]">.sh</span>
+                  persona<span className="text-[var(--accent)]">.sh</span>
                 </a>
                 <a
                   href="/browse"
@@ -111,7 +111,7 @@ export default function RootLayout({
                   Privacy
                 </a>
                 <a
-                  href="https://github.com/personalities-sh/spec"
+                  href="https://github.com/persona-sh/spec"
                   className="hover:text-[var(--text-secondary)] transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"

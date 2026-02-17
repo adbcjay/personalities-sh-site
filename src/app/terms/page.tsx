@@ -13,7 +13,7 @@ export default function TermsPage() {
               1. What this is
             </h2>
             <p>
-              personalities.sh is an open catalog of portable AI persona
+              persona.sh is an open catalog of portable AI persona
               configurations. We host a directory that links to persona packages
               stored in Git repositories. We do not host the persona files
               themselves.
@@ -45,7 +45,7 @@ export default function TermsPage() {
               Each persona package is governed by its own license (typically MIT).
               The license is specified in the persona&apos;s repository. If no
               license is specified, the persona is treated as MIT-licensed per the
-              personalities.sh format spec.
+              persona.sh format spec.
             </p>
           </section>
 
@@ -117,7 +117,7 @@ export default function TermsPage() {
             <p>
               Questions about these terms? Open an issue on{" "}
               <a
-                href="https://github.com/personalities-sh/site/issues"
+                href="https://github.com/persona-sh/site/issues"
                 className="text-[var(--accent)] hover:underline"
               >
                 GitHub

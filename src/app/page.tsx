@@ -22,7 +22,7 @@ export default function Home() {
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block text-sm text-left">
             <span className="text-[var(--text-primary)]">
               &ldquo;Install the Operator Copilot persona from{" "}
-              <span className="text-[var(--accent)]">github.com/personalities-sh/operator-copilot</span>
+              <span className="text-[var(--accent)]">github.com/persona-sh/operator-copilot</span>
               &rdquo;
             </span>
           </div>
@@ -148,7 +148,7 @@ export default function Home() {
           </p>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg px-6 py-4 inline-block text-sm text-left">
             <span className="text-[var(--text-primary)]">
-              &ldquo;Read the personalities.sh docs and package my current
+              &ldquo;Read the persona.sh docs and package my current
               setup as a persona. Include my project workflows as
               blueprints.&rdquo;
             </span>
