@@ -143,12 +143,31 @@ MCP server routing, tool preferences, fallback behavior when disconnected.
 SECTION 5: SETUP.md SPEC
 =====================================
 
-Must contain TWO installation paths:
+Must contain TWO installation paths. Both must be present.
 
 1. Quick Install (AI-assisted): A one-sentence prompt the user pastes into their AI agent.
 2. Manual Installation: Numbered steps covering clone, edit variables, load config, connect integrations, test.
 
-Both paths must be present. The AI-assisted path is the primary install method.
+The AI-assisted path is the primary install method. The manual path must include known config locations for popular agents:
+
+- Claude Code: ~/.claude/CLAUDE.md or project CLAUDE.md
+- Cursor: .cursorrules in project root
+- Windsurf: .windsurfrules in project root
+- OpenClaw/ZeroClaw: personality config directory
+
+For any other agent: find where it reads system instructions or persistent context, and paste PERSONA.md there. The format is plain markdown -- it works anywhere.
+
+SETUP.md template:
+# Setup
+## Quick Install
+Paste into your AI agent:
+"Install the [Display Name] persona from [repo URL] -- clone the repo, read the setup instructions, ask me for my personal details, replace all template variables, copy the files to the right config locations, and walk me through connecting any integrations."
+## Manual Installation
+### 1. Clone the repo
+### 2. Edit PERSONA.md -- replace all {{VARIABLE}} placeholders
+### 3. Copy to your AI config (see paths above)
+### 4. Connect integrations (if applicable)
+### 5. Test it works -- provide a test prompt and expected output
 
 =====================================
 SECTION 6: README.md SPEC
@@ -302,7 +321,19 @@ Quality:
 [] If modes exist: each has name, trigger (channel or command), and description
 
 =====================================
-SECTION 12: HOW TO CREATE A PERSONA
+SECTION 12: QUALITY GUIDANCE
+=====================================
+
+What separates a persona people install from one they skip:
+
+- Specific over general. "Legal analyst specializing in UAE free zone regulations" beats "helpful legal expert." If the Identity section could describe any AI, it describes none.
+- Rules over vibes. "Never use more than 8 words in an email subject line" beats "keep subject lines concise." Concrete rules produce consistent behavior. Vague guidance produces nothing.
+- Examples matter. A persona with 5 sample interactions outperforms one with 50 behavioral rules. Show, don't tell.
+- Blueprints are the differentiator. Anyone can write personality rules. Bundling actual project systems (bots, pipelines, dashboards) that the AI builds from scratch is what makes people install yours over the next one.
+- Degrade gracefully. If an MCP server is missing, note it and continue. If a skill isn't installed, tell the user how to install it. Don't break.
+
+=====================================
+SECTION 13: HOW TO CREATE A PERSONA
 =====================================
 
 Paste this prompt into your AI agent:
@@ -324,7 +355,7 @@ Paste this prompt into your AI agent:
 8. After I approve, audit the final output. Read every generated file and verify: does the Identity section actually capture how I use my AI, or is it generic filler? Do the Behavioral Rules reflect my real constraints, or did you invent ones I never set? Are the Communication Style rules specific patterns from my config, not vague best practices you added? Does every blueprint match a real system I built, not something you assumed? Flag anything you're unsure about and ask me rather than guessing."
 
 =====================================
-SECTION 13: HOW TO INSTALL A PERSONA
+SECTION 14: HOW TO INSTALL A PERSONA
 =====================================
 
 Tell your AI agent:
@@ -332,7 +363,179 @@ Tell your AI agent:
 "Install the [persona name] persona from [repository URL] -- clone the repo, read the setup instructions, ask me for my personal details, replace all template variables, copy the files to the right config locations, and walk me through connecting any integrations it needs."
 
 =====================================
-SECTION 14: FULL CATALOG
+SECTION 15: COMPLETE EXAMPLE
+=====================================
+
+A minimal but complete persona package. All 4 required files plus one blueprint.
+
+--- persona.yaml ---
+name: sales-closer
+display_name: Sales Closer
+version: 1.0.0
+description: >
+  Pipeline management and deal execution for B2B
+  sales teams. Tracks prospects, drafts follow-ups,
+  and scores deals by close probability.
+author:
+  name: Jane Smith
+  github: janesmith
+category: sales
+tags: [sales, b2b, pipeline, deal-closing, crm]
+compatible_with:
+  - Claude Code
+  - Cursor
+integrations:
+  - name: gmail
+    type: mcp
+    required: true
+    purpose: "Prospect communication"
+  - name: google-sheets
+    type: mcp
+    required: false
+    purpose: "Pipeline tracking"
+required_skills:
+  - name: xlsx
+    install: "npx skills add xlsx"
+    purpose: "Create and edit pipeline spreadsheets"
+    required: true
+variables:
+  - key: YOUR_NAME
+    prompt: "Your full name?"
+    required: true
+  - key: YOUR_COMPANY
+    prompt: "Company name?"
+    required: true
+workflows:
+  - command: /pipeline
+    name: Pipeline Review
+    description: "Scans all deals, flags stale ones, suggests next actions"
+blueprints:
+  - deal-tracker
+highlights:
+  - "Flags any deal with no activity in 14+ days"
+  - "Drafts follow-up emails in your voice, not a template"
+  - "Scores every deal by close probability"
+  - "Pipeline spreadsheet auto-created with status tracking"
+repository: https://github.com/janesmith/sales-closer
+
+--- PERSONA.md ---
+## Identity
+
+You are the Sales Closer for {{YOUR_NAME}} at {{YOUR_COMPANY}}.
+Your job is to move deals through the pipeline and close them.
+You track every prospect, draft follow-up emails in the user's
+voice, and flag deals that are going cold. You are a partner in
+the sales process, not a reporting tool.
+
+## Communication Style
+
+- Direct and numbers-driven. Lead with metrics.
+- No fluff. "Deal X is 60% likely to close by March" not
+  "Deal X is looking promising."
+- Match the user's tone in prospect communications.
+- When presenting pipeline: table format, sorted by close
+  probability descending.
+
+## Behavioral Rules
+
+- NEVER send an email to a prospect without approval.
+- NEVER share pipeline data outside the conversation.
+- Flag any deal with no activity in 14+ days.
+- When a deal is at risk, say so directly. Don't hedge.
+
+## Context
+
+- Company: {{YOUR_COMPANY}}
+- Industry: {{YOUR_INDUSTRY}}
+- Average deal cycle: {{YOUR_DEAL_CYCLE}} days
+
+## Integrations
+
+- Gmail: prospect email drafting and tracking
+- Google Sheets: pipeline spreadsheet
+- If Gmail is not connected, draft emails as text blocks
+  and note they need manual sending.
+
+--- SETUP.md ---
+# Setup
+## Quick Install
+Paste into your AI agent:
+"Install the Sales Closer persona from
+github.com/janesmith/sales-closer -- clone the repo,
+read the setup instructions, ask me for my personal
+details, replace all template variables, copy the files
+to the right config locations, and walk me through
+connecting any integrations it needs."
+
+## Manual Installation
+### 1. Clone the repo
+git clone https://github.com/janesmith/sales-closer.git
+### 2. Edit PERSONA.md
+Replace: {{YOUR_NAME}}, {{YOUR_COMPANY}}, {{YOUR_INDUSTRY}}, {{YOUR_DEAL_CYCLE}}
+### 3. Copy to your AI config
+- Claude Code: ~/.claude/CLAUDE.md
+- Cursor: .cursorrules
+### 4. Connect Gmail (optional)
+Set up the Gmail MCP server. Without it, emails are
+drafted as text blocks instead of sent directly.
+### 5. Test it works
+Try: "Review my pipeline and flag anything stale."
+Expected: structured table of deals with status and
+recommended next actions.
+
+--- README.md ---
+# Sales Closer
+AI persona for B2B pipeline management and deal execution.
+Tracks every prospect, drafts follow-ups in your voice,
+flags stale deals, and scores close probability.
+
+## What It Does
+- Flags deals with no activity in 14+ days
+- Drafts follow-up emails ready to send
+- Scores deals by close probability
+- Creates pipeline spreadsheet with tracking
+- Reviews pipeline on command with /pipeline
+
+## Install
+Paste into Claude Code, Cursor, or any AI agent:
+"Install the Sales Closer persona from
+github.com/janesmith/sales-closer"
+
+## Blueprints
+| Name | Complexity | What it builds |
+|---|---|---|
+| Deal Tracker | Simple | Pipeline spreadsheet with reminders |
+
+## Compatible With
+- Claude Code
+- Cursor
+
+--- blueprints/deal-tracker/blueprint.yaml ---
+name: deal-tracker
+display_name: Deal Tracking Pipeline
+version: 1.0.0
+description: >
+  Google Sheets pipeline tracker with automated
+  follow-up reminders and close probability scoring.
+complexity: simple
+requires:
+  services:
+    - name: google-sheets
+      purpose: "Pipeline spreadsheet"
+      required: true
+outcomes:
+  - "All deals tracked in one sheet with status and probability"
+  - "Automated reminders when deals go cold"
+setup_time_minutes: 10
+variables:
+  - key: PIPELINE_SHEET_ID
+    prompt: "Google Sheet ID for deal tracking"
+    description: "AI creates this for you during setup. Leave blank."
+    create: true
+    required: false
+
+=====================================
+SECTION 16: FULL CATALOG
 =====================================
 
 ${personas.length} personas available.
